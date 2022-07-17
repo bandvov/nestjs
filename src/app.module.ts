@@ -1,3 +1,4 @@
+import { User } from './users/users.schema';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { SequelizeModule } from '@nestjs/sequelize';
@@ -16,6 +17,7 @@ import { UsersModule } from './users/users.module';
       database: process.env.SEQUELIZE_DATABASE,
       dialect: 'postgres',
       autoLoadModels: true,
+      models: [User],
     }),
     UsersModule,
   ],

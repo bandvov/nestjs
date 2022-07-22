@@ -1,3 +1,4 @@
+import { CreateUserDTO } from './../dto/user.dto';
 import { User } from './users.schema';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';

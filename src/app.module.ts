@@ -1,8 +1,11 @@
+import { UserRoles } from './users/user.role.schema';
+import { Role } from './roles/role.schema';
 import { User } from './users/users.schema';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { UsersModule } from './users/users.module';
+import { RolesModule } from './roles/role.module';
 
 @Module({
   imports: [
@@ -17,9 +20,10 @@ import { UsersModule } from './users/users.module';
       database: process.env.SEQUELIZE_DATABASE,
       dialect: 'postgres',
       autoLoadModels: true,
-      models: [User],
+      models: [User, Role, UserRoles],
     }),
     UsersModule,
+    RolesModule,
   ],
 })
 export class AppModule {}

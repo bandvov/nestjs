@@ -1,7 +1,7 @@
 import { CreateUserDTO } from './../dto/user.dto';
 import { User } from './users.schema';
 import { UsersService } from './users.service';
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 @ApiTags('Users')
 @Controller('users')

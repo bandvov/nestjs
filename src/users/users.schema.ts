@@ -45,6 +45,7 @@ export class User extends Model<User, IUserCreation> {
   @ApiProperty({ name: 'banned', default: 'false' })
   @Column({
     type: DataType.BOOLEAN,
+    defaultValue: false,
   })
   banned: boolean;
 

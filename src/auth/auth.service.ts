@@ -1,4 +1,9 @@
-import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
+import {
+  Injectable,
+  HttpException,
+  HttpStatus,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UsersService } from './../users/users.service';
 import { CreateUserDTO } from './../dto/user.dto';
@@ -24,11 +29,29 @@ export class AuthService {
     return await this.generateToken(newUser as User);
   }
 
-  login(userDto: CreateUserDTO) {
-    return this.userService.
+  async login(userDto: CreateUserDTO) {
+    const user = await this.validateUser(userDto);
+
+    if (user) {
+      return this.generateToken(user as User);
+    }
   }
 
-  async generateToken({ id, email, roles }) {
+  private generateToken({ id, email, roles }) {
     return this.jwtService.sign({ id, email, roles }, { expiresIn: '24h' });
+  }
+  private async validateUser(dto: CreateUserDTO) {
+    const user = await this.userService.getUserByEmail(dto.email);
+    if (!user) {
+      throw new HttpException('User not found', HttpStatus.NOT_FOUND);
+    }
+    const passwordEqual = await bcrypt.compare(dto.password, user.password);
+    console.log('equal', passwordEqual);
+
+    if (passwordEqual) {
+      return user;
+    } else {
+      throw new UnauthorizedException('Password or email not correct');
+    }
   }
 }

@@ -1,3 +1,4 @@
+import { AuthModule } from './auth/auth.module';
 import { UserRoles } from './users/user.role.schema';
 import { Role } from './roles/role.schema';
 import { User } from './users/users.schema';
@@ -24,6 +25,7 @@ import { RolesModule } from './roles/role.module';
     }),
     UsersModule,
     RolesModule,
+    AuthModule,
   ],
 })
 export class AppModule {}

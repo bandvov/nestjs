@@ -10,13 +10,13 @@ export class UsersController {
   @ApiOperation({ summary: 'Should return all users' })
   @ApiResponse({ status: 200, type: [User] })
   @Get()
-  getUsers() {
+  async getUsers() {
     return this.userService.getAllUsers();
   }
   @ApiOperation({ summary: 'Should create user' })
   @ApiResponse({ status: 200, type: User })
   @Post('/create')
-  createUser(@Body() user: CreateUserDTO) {
+  async createUser(@Body() user: CreateUserDTO) {
     return this.userService.createUser(user);
   }
 }

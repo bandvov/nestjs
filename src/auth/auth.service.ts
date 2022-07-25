@@ -31,20 +31,26 @@ export class AuthService {
 
   async login(userDto: CreateUserDTO) {
     const user = await this.validateUser(userDto);
+    console.log('user', user);
 
     if (user) {
-      return this.generateToken(user as User);
+      return this.generateToken({
+        id: user.id,
+        email: user.email,
+        roles: user.roles,
+      });
     }
   }
 
-  private generateToken({ id, email, roles }) {
-    return this.jwtService.sign({ id, email, roles }, { expiresIn: '24h' });
+  private generateToken(data) {
+    return this.jwtService.sign(data, { expiresIn: '24h' });
   }
   private async validateUser(dto: CreateUserDTO) {
     const user = await this.userService.getUserByEmail(dto.email);
     if (!user) {
       throw new HttpException('User not found', HttpStatus.NOT_FOUND);
     }
+
     const passwordEqual = await bcrypt.compare(dto.password, user.password);
     console.log('equal', passwordEqual);
 

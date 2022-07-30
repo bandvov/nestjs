@@ -49,12 +49,12 @@ export class User extends Model<User, IUserCreation> {
   })
   banned: boolean;
 
-  @ApiProperty({ name: 'bannedReason', default: '' })
+  @ApiProperty({ name: 'banReason', default: '' })
   @Column({
     type: DataType.STRING,
     allowNull: true,
   })
-  bannedReason: string;
+  banReason: string;
 
   @BelongsToMany(() => Role, () => UserRoles)
   roles: Role[];

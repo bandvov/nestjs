@@ -22,11 +22,15 @@ export class AuthService {
       return new HttpException('User already exists', HttpStatus.BAD_REQUEST);
     }
     const hashedPassword = await bcrypt.hash(userDto.password, 8);
-    const newUser = await this.userService.createUser({
+    const { id, email, roles } = await this.userService.createUser({
       ...userDto,
       password: hashedPassword,
     });
-    return await this.generateToken(newUser as User);
+    return await this.generateToken({
+      id,
+      email,
+      roles,
+    });
   }
 
   async login(userDto: CreateUserDTO) {

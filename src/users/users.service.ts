@@ -1,9 +1,15 @@
+import { ValidationPipe } from './../pipes/validation.pipe';
 import { BanUserDTO } from './../dto/ban-user.dto';
 import { AddRoleDTO } from './../dto/add.role.dto';
 import { RolesService } from './../roles/role.service';
 import { CreateUserDTO } from './../dto/user.dto';
 import { User } from './users.schema';
-import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
+import {
+  Injectable,
+  HttpException,
+  HttpStatus,
+  UsePipes,
+} from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 
 @Injectable()

@@ -1,10 +1,10 @@
 import { BanUserDTO } from './../dto/ban-user.dto';
 import { AddRoleDTO } from './../dto/add.role.dto';
-import { CreateUserDTO } from './../dto/user.dto';
+
 import { User } from './users.schema';
 import { UsersService } from './users.service';
 import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
-import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Roles } from 'src/auth/auth.role.decorators';
 import { RolesGuard } from 'src/roles/role.guard';
 @ApiTags('Users')

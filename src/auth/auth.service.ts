@@ -1,8 +1,10 @@
+import { ValidationPipe } from './../pipes/validation.pipe';
 import {
   Injectable,
   HttpException,
   HttpStatus,
   UnauthorizedException,
+  UsePipes,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UsersService } from './../users/users.service';
@@ -32,10 +34,8 @@ export class AuthService {
       roles,
     });
   }
-
   async login(userDto: CreateUserDTO) {
     const user = await this.validateUser(userDto);
-    console.log('user', user);
 
     if (user) {
       return this.generateToken({

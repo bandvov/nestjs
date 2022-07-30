@@ -1,4 +1,5 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { ValidationPipe } from './../pipes/validation.pipe';
+import { Body, Controller, Post, UsePipes } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { CreateUserDTO } from '../dto/user.dto';
 import { AuthService } from './auth.service';
@@ -8,11 +9,11 @@ import { AuthService } from './auth.service';
 export class AuthController {
   constructor(private authService: AuthService) {}
 
+  @UsePipes(ValidationPipe)
   @Post('/login')
   login(@Body() userDto: CreateUserDTO) {
     return this.authService.login(userDto);
   }
-
   @Post('/registration')
   registration(@Body() userDto: CreateUserDTO) {
     return this.authService.register(userDto);

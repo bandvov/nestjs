@@ -5,6 +5,7 @@
   "author": "",
   "private": true,
   "license": "UNLICENSED",
+  "keywords":["nest", "nestjs", "nest", "node", "nodejs", "api", "server"],
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",

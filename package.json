@@ -1,11 +1,19 @@
 {
-  "name": "music",
+  "name": "nestjs",
   "version": "0.0.1",
-  "description": "",
+  "description": "Nest.js API",
   "author": "",
   "private": true,
   "license": "UNLICENSED",
-  "keywords":["nest", "nestjs", "nest", "node", "nodejs", "api", "server"],
+  "keywords":[
+    "nest",
+    "nestjs", 
+    "nest", 
+    "node", 
+    "nodejs", 
+    "api", 
+    "server"
+  ],
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
